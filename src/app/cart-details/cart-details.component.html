@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Cart Details</h2>
+    <button *ngIf="cartItems.length" class="btn btn-warning" (click)="clear()">Clear Cart</button>
+</div>
+
+<div *ngIf="cartItems.length === 0">Your cart is empty.</div>
+<table *ngIf="cartItems.length" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price (Each)</th>
+            <th>Total Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cartItem of cartItems; let i = index">
+            <td>
+                <img [src]="cartItem.bookListItem.imageUrl" alt="{{cartItem.bookListItem.title}}"
+                    style="width: 60px; height: auto;">
+            </td>
+            <td>{{ cartItem.bookListItem.title }}</td>
+            <td>{{ cartItem.bookListItem.description }}</td>
+            <td>{{ cartItem.quantity }}</td>
+            <td>{{ cartItem.bookListItem.price | currency }}</td>
+            <td>{{ (cartItem.totalPrice) | currency }}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" (click)="remove(i)">Remove</button>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5" class="text-end"><strong>Total:</strong></td>
+            <td colspan="2"><strong>{{ getCartTotal() | currency }}</strong></td>
+        </tr>
+    </tfoot>
+</table>

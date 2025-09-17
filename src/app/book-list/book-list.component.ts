@@ -10,6 +10,7 @@ export interface BookListItem {
   price: number;
   description: string;
   imageUrl: string;
+  type: string;
 }
 
 @Component({
@@ -21,9 +22,21 @@ export interface BookListItem {
 })
 export class BookListComponent {
   books: BookListItem[] = [];
+  filteredBooks: BookListItem[] = [];
   constructor(private cartService: CartService, private bookService: BookService) {
     this.books = this.bookService.books;
+
+    this.bookService.getFilters().subscribe(filters => {
+      if (filters.length === 0) {
+        this.filteredBooks = this.books;
+        return;
+      }
+
+      this.filteredBooks = this.books.filter(book => filters.includes(book.type));
+    });
   }
+
+
 
   addToCart(book: BookListItem) {
     this.cartService.addItem(book);

@@ -1,0 +1,32 @@
+// Center the book list and style the cards
+.book-list-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+    justify-content: center;
+}
+
+.book-card {
+    width: 15rem;
+    border-radius: 1rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+    background: #fff;
+    border: none;
+}
+
+.book-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px) scale(1.03);
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.btn-outline-primary {
+    border-radius: 2rem;
+    font-weight: 500;
+}

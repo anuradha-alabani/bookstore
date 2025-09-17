@@ -1,0 +1,15 @@
+<div *ngIf="book as b; else notFound" class="d-flex justify-content-center align-items-center"
+    style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="width: 22rem;">
+        <img [src]="b?.imageUrl" class="card-img-top mb-3 rounded" alt="Book image">
+        <div class="card-body text-center">
+            <h5 class="card-title mb-2">{{ b?.title }}</h5>
+            <p class="card-text mb-2">{{ b?.description }}</p>
+            <p class="card-text mb-3 font-weight-bold">Price: <span class="text-success">{{ b?.price }}</span></p>
+            <button class="btn btn-primary w-100" (click)="addToCart()">Add to Cart</button>
+        </div>
+    </div>
+</div>
+<ng-template #notFound>
+    <p>Book not found.</p>
+</ng-template>
